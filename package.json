@@ -61,7 +61,8 @@
 		"postpublish": "git tag $(node -p \"require('./package.json').version\") && git push --tags",
 		"prepublishOnly": "yarn run build",
 		"start": "node build/",
-		"watch": "nodemon --watch source/ --exec \"yarn run build && yarn run start\""
+		"watch": "nodemon --watch source/ --exec \"yarn run build && yarn run start\"",
+		"prepare": "npm run build"
 	},
 	"version": "1.2.1"
 }
