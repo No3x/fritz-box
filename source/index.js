@@ -74,11 +74,13 @@ export default class FritzBoxAPI {
 				sid: this.sessionID,
 				page: 'wGuest',
 			})
-		const json = JSON.parse(response.text);
+
+		const json = JSON.parse(response.text)
+
 		return {
 			ssid: json.data.guestAccess.ssid,
 			key: json.data.guestAccess.psk,
-		};
+		}
 	}
 
 	/**
