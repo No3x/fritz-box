@@ -74,19 +74,11 @@ export default class FritzBoxAPI {
 				sid: this.sessionID,
 				page: 'wGuest',
 			})
-		const $ = cheerio.load(response.text)
+		const json = JSON.parse(response.text);
 		return {
-			ssid: $('#uiViewGuestSsid').val(),
-			key: $('#uiViewWpaKey').val(),
-			active: $('#uiViewActivateGuestAccess').is(':checked'),
-			limited: $('#uiGroupAccess').is(':checked'),
-			terms: $('#uiUntrusted').is(':checked'),
-			allowCommunication: $('#uiUiUserIsolation').is(':checked'),
-			autoDisable: $('#uiViewDownTimeActiv').is(':checked'),
-			waitForLastGuest: $('#uiViewDisconnectGuestAccess').is(':checked'),
-			deactivateAfter: $('#uiViewDownTime').val(),
-			security: $('#uiSecMode').val(),
-		}
+			ssid: json.data.guestAccess.ssid,
+			key: json.data.guestAccess.psk,
+		};
 	}
 
 	/**
